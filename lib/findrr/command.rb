@@ -29,7 +29,9 @@ module Findrr
     def search(part_of_filename)
       Groonga::Database.open(database_path) do
         files = Groonga["Files"]
-        found_files = files.select {|record| record.basename =~ part_of_filename}
+        found_files = files.select do |record|
+                        record.basename =~ part_of_filename
+                      end
         found_files.each do |file|
           puts file._key.force_encoding("locale")
         end
