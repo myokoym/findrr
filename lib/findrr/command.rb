@@ -5,6 +5,7 @@ require "groonga"
 
 module Findrr
   class Command < Thor
+    attr_accessor :base_dir
     def initialize(*args)
       super
       @base_dir = File.join(File.expand_path("~"), ".findrr")
