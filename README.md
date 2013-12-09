@@ -1,4 +1,4 @@
-# Findrr
+# Findrr [![Build Status](https://secure.travis-ci.org/myokoym/findrr.png?branch=master)](http://travis-ci.org/myokoym/findrr)
 
 A search tool for filenames in your directories.
 
