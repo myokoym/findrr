@@ -26,7 +26,7 @@ module Findrr
       end
     end
 
-    desc "search PART_OF_FILENAME", "Search filenames in the collection"
+    desc "search PART_OF_FILENAME", "Search for filenames in the collection"
     def search(filename)
       Groonga::Database.open(@database_path) do
         files = Groonga["Files"]

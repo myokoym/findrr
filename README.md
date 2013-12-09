@@ -27,7 +27,7 @@ Or install it yourself as:
 
     $ findrr collect PATH
 
-### Search filenames in the collection
+### Search for filenames in the collection
 
     $ findrr search PART_OF_FILENAME
 
