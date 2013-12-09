@@ -8,8 +8,6 @@ module Findrr
     def initialize(*args)
       super
       @base_dir = File.join(File.expand_path("~"), ".findrr")
-      @database_dir = File.join(@base_dir, "db")
-      @database_path = File.join(@database_dir, "findrr.db")
       Groonga::Context.default_options = {:encoding => :utf8}
     end
 
@@ -17,7 +15,7 @@ module Findrr
     def collect(path)
       create_database_dir
       create_database
-      Groonga::Database.open(@database_path) do
+      Groonga::Database.open(database_path) do
         files = Groonga["Files"]
         Find.find(File.expand_path(path)) do |path|
           files.add(path, :basename => File.basename(path))
@@ -27,10 +25,10 @@ module Findrr
     end
 
     desc "search PART_OF_FILENAME", "Search for filenames in the collection"
-    def search(filename)
-      Groonga::Database.open(@database_path) do
+    def search(part_of_filename)
+      Groonga::Database.open(database_path) do
         files = Groonga["Files"]
-        found_files = files.select {|record| record.basename =~ filename}
+        found_files = files.select {|record| record.basename =~ part_of_filename}
         found_files.each do |file|
           puts file._key.force_encoding("locale")
         end
@@ -39,15 +37,23 @@ module Findrr
     end
 
     private
+    def database_dir
+      File.join(@base_dir, "db")
+    end
+
+    def database_path
+      File.join(database_dir, "findrr.db")
+    end
+
     def create_database_dir
-      unless File.exist?(@database_dir)
-        FileUtils.mkdir_p(@database_dir)
+      unless File.exist?(database_dir)
+        FileUtils.mkdir_p(database_dir)
       end
     end
 
     def create_database
-      unless File.exist?(@database_path)
-        Groonga::Database.create(:path => @database_path)
+      unless File.exist?(database_path)
+        Groonga::Database.create(:path => database_path)
 
         Groonga::Schema.create_table("Files", :type => :hash) do |table|
           table.text("basename")
