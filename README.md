@@ -2,6 +2,11 @@
 
 A search tool for filenames in your directories.
 
+## Requirements
+
+* [Rroonga](http://ranguba.org/)
+* [Thor](http://whatisthor.com/)
+
 ## Installation
 
 Add this line to your application's Gemfile:
