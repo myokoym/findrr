@@ -5,7 +5,7 @@ require "groonga"
 module Findrr
   class Database
     attr_accessor :base_dir
-    def initialize(base_dir)
+    def initialize(base_dir=default_base_dir)
       @base_dir = base_dir
       Groonga::Context.default_options = {:encoding => :utf8}
     end
@@ -36,6 +36,10 @@ module Findrr
     end
 
     private
+    def default_base_dir
+      File.join(File.expand_path("~"), ".findrr")
+    end
+
     def database_dir
       File.join(@base_dir, "db")
     end
