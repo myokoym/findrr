@@ -58,7 +58,7 @@ module Findrr
       unless File.exist?(database_path)
         Groonga::Database.create(:path => database_path)
 
-        Groonga::Schema.create_table("Files", :type => :hash) do |table|
+        Groonga::Schema.create_table("Files", :type => :patricia_trie) do |table|
           table.text("basename")
         end
 
