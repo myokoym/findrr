@@ -18,7 +18,7 @@ Hint: table schema might be changed. Please try `findrr destroy` command.
     desc "search PART_OF_FILENAME", "Search for filenames in the collection"
     def search(part_of_filename)
       begin
-      Database.new.search(part_of_filename)
+        Database.new.search(part_of_filename)
       rescue => e
         $stderr.puts <<-END_OF_MESSAGE
 Error: #{e.message}
