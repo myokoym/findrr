@@ -17,8 +17,12 @@ module Findrr
         Groonga["Registers"].add(target)
         files = Groonga["Files"]
         Find.find(File.expand_path(target)) do |path|
+          begin
           files.add(path, :basename => File.basename(path),
                           :mtime    => File.mtime(path))
+          rescue Errno::ENOENT
+            next
+          end
         end
         files.size
       end
