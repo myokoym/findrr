@@ -9,7 +9,7 @@ module Findrr
         Database.new.collect(path)
       rescue => e
         $stderr.puts <<-END_OF_MESSAGE
-Error: #{e.message}
+#{e.class}: #{e.message}
 Hint: table schema might be changed. Please try `findrr destroy` command.
         END_OF_MESSAGE
       end
@@ -21,7 +21,7 @@ Hint: table schema might be changed. Please try `findrr destroy` command.
         Database.new.search(part_of_filename)
       rescue => e
         $stderr.puts <<-END_OF_MESSAGE
-Error: #{e.message}
+#{e.class}: #{e.message}
 Hint: database probably isn't created. Please try `findrr collect` command.
         END_OF_MESSAGE
       end
