@@ -10,13 +10,13 @@ module Findrr
       Groonga::Context.default_options = {:encoding => :utf8}
     end
 
-    def collect(path)
+    def collect(target)
       create_database_dir
       create_database
       Groonga::Database.open(database_path) do
-        Groonga["Paths"].add(path)
+        Groonga["Paths"].add(target)
         files = Groonga["Files"]
-        Find.find(File.expand_path(path)) do |path|
+        Find.find(File.expand_path(target)) do |path|
           files.add(path, :basename => File.basename(path),
                           :mtime    => File.mtime(path))
         end
