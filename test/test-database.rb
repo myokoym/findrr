@@ -17,4 +17,11 @@ class DatabaseTest < Test::Unit::TestCase
     assert_true(0 < @database.collect(File.dirname(__FILE__)))
     assert_true(0 < @database.search("test"))
   end
+
+  def test_destroy
+    @database.collect(File.dirname(__FILE__))
+    assert_true(File.exist?(@tmp_db_dir))
+    @database.destroy
+    assert_false(File.exist?(@tmp_db_dir))
+  end
 end

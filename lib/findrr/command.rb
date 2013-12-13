@@ -12,5 +12,10 @@ module Findrr
     def search(part_of_filename)
       Database.new.search(part_of_filename)
     end
+
+    desc "destroy", "Delete a database and collections"
+    def destroy(path)
+      Database.new.destroy
+    end
   end
 end

@@ -37,6 +37,10 @@ module Findrr
       end
     end
 
+    def destroy
+      FileUtils.rm_rf(database_dir)
+    end
+
     private
     def default_base_dir
       File.join(File.expand_path("~"), ".findrr")
