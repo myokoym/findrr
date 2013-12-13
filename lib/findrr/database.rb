@@ -14,7 +14,7 @@ module Findrr
       create_database_dir
       create_database
       Groonga::Database.open(database_path) do
-        Groonga["Paths"].add(target)
+        Groonga["Registers"].add(target)
         files = Groonga["Files"]
         Find.find(File.expand_path(target)) do |path|
           files.add(path, :basename => File.basename(path),
@@ -60,7 +60,7 @@ module Findrr
 
       Groonga::Database.create(:path => database_path)
 
-      Groonga::Schema.create_table("Paths", :type => :hash)
+      Groonga::Schema.create_table("Registers", :type => :hash)
 
       Groonga::Schema.create_table("Files", :type => :patricia_trie) do |table|
         table.text("basename")
