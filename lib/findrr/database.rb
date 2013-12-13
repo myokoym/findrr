@@ -71,7 +71,7 @@ module Findrr
       Groonga::Schema.create_table("Registers", :type => :hash)
 
       Groonga::Schema.create_table("Files", :type => :patricia_trie) do |table|
-        table.text("basename")
+        table.short_text("basename")
         table.time("mtime")
       end
 
