@@ -6,7 +6,7 @@ module Findrr
     desc "collect PATH", "Collect filenames (take a few minutes)"
     def collect(path)
       begin
-      Database.new.collect(path)
+        Database.new.collect(path)
       rescue => e
         $stderr.puts <<-END_OF_MESSAGE
 Error: #{e.message}
