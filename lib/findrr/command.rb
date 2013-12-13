@@ -14,7 +14,7 @@ module Findrr
     end
 
     desc "destroy", "Delete a database and collections"
-    def destroy(path)
+    def destroy
       Database.new.destroy
     end
   end
