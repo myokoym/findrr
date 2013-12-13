@@ -50,13 +50,13 @@ module Findrr
     end
 
     def create_database_dir
-      unless File.exist?(database_dir)
+      return if File.exist?(database_dir)
         FileUtils.mkdir_p(database_dir)
-      end
     end
 
     def create_database
-      unless File.exist?(database_path)
+      return if File.exist?(database_path)
+
         Groonga::Database.create(:path => database_path)
 
         Groonga::Schema.create_table("Files", :type => :patricia_trie) do |table|
@@ -70,7 +70,6 @@ module Findrr
                                      :default_tokenizer => "TokenBigram") do |table|
           table.index("Files.basename")
         end
-      end
     end
   end
 end
