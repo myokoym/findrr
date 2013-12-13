@@ -68,7 +68,7 @@ module Findrr
 
       Groonga::Database.create(:path => database_path)
 
-      Groonga::Schema.create_table("Registers", :type => :hash)
+      Groonga::Schema.create_table("Registers", :type => :patricia_trie)
 
       Groonga::Schema.create_table("Files", :type => :patricia_trie) do |table|
         table.short_text("basename")
