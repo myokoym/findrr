@@ -4,6 +4,10 @@
 
 ### Changes
 
+  * Improvements
+    * Use ShortText type to "basename" column.
+    * Added "Registers" table.
+
   * Fixes
     * Skip Errno::ENOENT when collecting filenames.
 
