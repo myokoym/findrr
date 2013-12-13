@@ -27,7 +27,7 @@ Hint: database probably isn't created. Please try `findrr collect` command.
       end
     end
 
-    desc "destroy", "Delete a database and collections"
+    desc "destroy", "Delete the database and the collection"
     def destroy
       Database.new.destroy
     end
