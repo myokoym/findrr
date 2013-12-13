@@ -16,7 +16,8 @@ module Findrr
       Groonga::Database.open(database_path) do
         files = Groonga["Files"]
         Find.find(File.expand_path(path)) do |path|
-          files.add(path, :basename => File.basename(path))
+          files.add(path, :basename => File.basename(path),
+                          :mtime    => File.mtime(path))
         end
         files.size
       end
@@ -60,6 +61,7 @@ module Findrr
 
         Groonga::Schema.create_table("Files", :type => :patricia_trie) do |table|
           table.text("basename")
+          table.time("mtime")
         end
 
         Groonga::Schema.create_table("Terms",
