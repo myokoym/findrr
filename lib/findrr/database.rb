@@ -14,7 +14,7 @@ module Findrr
       create_database_dir
       create_database
       Groonga::Database.open(database_path) do
-        Groonga["Registers"].add(target)
+        Groonga["Registers"].add(File.expand_path(target))
         files = Groonga["Files"]
         Find.find(File.expand_path(target)) do |path|
           begin
