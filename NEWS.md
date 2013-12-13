@@ -9,6 +9,7 @@ Improve the table shcema!
   * Improvements
     * Use PatriciaTrie for type of "Files" table.
     * Added "mtime" column to "Files" table.
+    * Added "destroy" command as delete the database.
 
 ## 0.0.1: 2013-12-09
 
