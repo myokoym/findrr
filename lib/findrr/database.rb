@@ -18,8 +18,12 @@ module Findrr
         files = Groonga["Files"]
         Find.find(File.expand_path(target)) do |path|
           begin
+            if files.has_key?(path)
+              files[path] = {:mtime => File.mtime(path)}
+            else
             files.add(path, :basename => File.basename(path),
                             :mtime    => File.mtime(path))
+            end
           rescue Errno::ENOENT
             next
           end

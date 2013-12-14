@@ -19,6 +19,11 @@ class DatabaseTest < Test::Unit::TestCase
     assert_true(0 < @database.collect(File.dirname(__FILE__)))
   end
 
+  def test_collect_update
+    size = @database.collect(File.dirname(__FILE__))
+    assert_equal(size, @database.collect(File.dirname(__FILE__)))
+  end
+
   def test_search
     @database.collect(File.dirname(__FILE__))
     assert_true(0 < @database.search("test"))
