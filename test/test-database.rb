@@ -13,8 +13,12 @@ class DatabaseTest < Test::Unit::TestCase
     FileUtils.rm_rf(@tmp_db_dir)
   end
 
-  def test_collect_and_search
+  def test_collect
     assert_true(0 < @database.collect(File.dirname(__FILE__)))
+  end
+
+  def test_search
+    @database.collect(File.dirname(__FILE__))
     assert_true(0 < @database.search("test"))
   end
 
