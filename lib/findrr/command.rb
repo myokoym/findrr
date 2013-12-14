@@ -1,10 +1,12 @@
 require "thor"
 require "findrr/database"
+require "findrr/config"
 
 module Findrr
   class Command < Thor
     desc "collect PATH", "Collect filenames (take a few minutes)"
     def collect(path)
+      Config.new.save(path)
       begin
         Database.new.collect(path)
       rescue => e

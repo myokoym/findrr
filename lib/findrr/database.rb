@@ -14,7 +14,6 @@ module Findrr
       create_database_dir
       create_database
       Groonga::Database.open(database_path) do
-        Groonga["Registers"].add(File.expand_path(target))
         files = Groonga["Files"]
         Find.find(File.expand_path(target)) do |path|
           begin
@@ -72,8 +71,6 @@ module Findrr
       return if File.exist?(database_path)
 
       Groonga::Database.create(:path => database_path)
-
-      Groonga::Schema.create_table("Registers", :type => :patricia_trie)
 
       Groonga::Schema.create_table("Files", :type => :patricia_trie) do |table|
         table.short_text("basename")
