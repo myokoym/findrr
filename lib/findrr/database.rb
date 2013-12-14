@@ -25,6 +25,9 @@ module Findrr
             end
           rescue Errno::ENOENT
             next
+          rescue => e
+            $stderr.puts("Skip: #{e.class}: #{e.message} (#{path})")
+            next
           end
         end
         files.size
