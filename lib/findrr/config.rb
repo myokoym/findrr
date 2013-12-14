@@ -9,6 +9,7 @@ module Findrr
     end
 
     def save(target)
+      FileUtils.mkdir_p(@base_dir)
       @config["history"] << target
       write
     end
