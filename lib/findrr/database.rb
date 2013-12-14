@@ -21,8 +21,8 @@ module Findrr
             if files.has_key?(path)
               files[path] = {:mtime => File.mtime(path)}
             else
-            files.add(path, :basename => File.basename(path),
-                            :mtime    => File.mtime(path))
+              files.add(path, :basename => File.basename(path),
+                              :mtime    => File.mtime(path))
             end
           rescue Errno::ENOENT
             next
