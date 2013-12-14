@@ -5,12 +5,14 @@ class DatabaseTest < Test::Unit::TestCase
   def setup
     @tmp_dir = File.join(File.dirname(__FILE__), "tmp")
     @tmp_db_dir = File.join(@tmp_dir, "db")
-    FileUtils.rm_rf(@tmp_db_dir)
+    FileUtils.rm(Dir.glob(File.join(@tmp_db_dir, "findrr.db*")))
+    FileUtils.rmdir(@tmp_db_dir)
     @database = Findrr::Database.new(@tmp_dir)
   end
 
   def teardown
-    FileUtils.rm_rf(@tmp_db_dir)
+    FileUtils.rm(Dir.glob(File.join(@tmp_db_dir, "findrr.db*")))
+    FileUtils.rmdir(@tmp_db_dir)
   end
 
   def test_collect

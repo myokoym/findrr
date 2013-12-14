@@ -42,7 +42,8 @@ module Findrr
     end
 
     def destroy
-      FileUtils.rm_rf(database_dir)
+      FileUtils.rm(Dir.glob(File.join(database_dir, "findrr.db*")))
+      FileUtils.rmdir(database_dir)
     end
 
     private
