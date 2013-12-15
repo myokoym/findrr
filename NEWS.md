@@ -1,5 +1,13 @@
 # NEWS
 
+## 0.0.5: 2013-12-15
+
+### Changes
+
+  * Improvements
+    * Removed "mtime" column from "Files" table.
+      * Bacause it is not necessary to fulltext search.
+
 ## 0.0.4: 2013-12-15
 
 ### Changes
