@@ -16,10 +16,10 @@ module Findrr
       Groonga::Database.open(database_path) do
         files = Groonga["Files"]
         Find.find(File.expand_path(target)) do |path|
-            if files.has_key?(path)
-            else
-              files.add(path, :basename => File.basename(path))
-            end
+          if files.has_key?(path)
+          else
+            files.add(path, :basename => File.basename(path))
+          end
         end
         files.size
       end
