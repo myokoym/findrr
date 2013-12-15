@@ -1,9 +1,15 @@
 require "thor"
+require "findrr/version"
 require "findrr/database"
 require "findrr/config"
 
 module Findrr
   class Command < Thor
+    desc "version", "Show version number"
+    def version
+      puts VERSION
+    end
+
     desc "collect PATH", "Collect filenames (take a few minutes)"
     def collect(path)
       Config.new.save(path)
