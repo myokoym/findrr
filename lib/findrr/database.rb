@@ -16,19 +16,10 @@ module Findrr
       Groonga::Database.open(database_path) do
         files = Groonga["Files"]
         Find.find(File.expand_path(target)) do |path|
-          begin
             if files.has_key?(path)
-              files[path] = {:mtime => File.mtime(path)}
             else
-              files.add(path, :basename => File.basename(path),
-                              :mtime    => File.mtime(path))
+              files.add(path, :basename => File.basename(path))
             end
-          rescue Errno::ENOENT
-            next
-          rescue => e
-            $stderr.puts("Skip: #{e.class}: #{e.message} (#{path})")
-            next
-          end
         end
         files.size
       end
@@ -77,7 +68,6 @@ module Findrr
 
       Groonga::Schema.create_table("Files", :type => :patricia_trie) do |table|
         table.short_text("basename")
-        table.time("mtime")
       end
 
       Groonga::Schema.create_table("Terms",
